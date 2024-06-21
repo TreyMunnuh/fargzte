@@ -21,7 +21,7 @@ pipeline {
             steps {
                 script {
                     // Assuming the CloudFormation template is located in the `cloudformation` directory
-                    def templateFile = 'cloudformation/fargate-template.json'
+                    def templateFile = 'fargate.yaml'
 
                     // Validate the CloudFormation template
                     sh """
@@ -35,7 +35,7 @@ pipeline {
             steps {
                 script {
                     // Assuming the parameters file is located in the `cloudformation` directory
-                    def parametersFile = 'cloudformation/parameters.json'
+                    def parametersFile = 'fargate.yaml'
 
                     // Deploy or update the CloudFormation stack using the CloudFormation plugin
                     cloudFormation(
