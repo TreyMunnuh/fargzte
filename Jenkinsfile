@@ -21,7 +21,7 @@ pipeline {
             steps {
                 script {
                     // Assuming the CloudFormation template is located in the `cloudformation` directory
-                    def templateFile = 'fargate.yaml'
+                    def templateFile = 'cloudformation/fargate.yaml'
 
                     // Validate the CloudFormation template
                     sh """
@@ -35,15 +35,15 @@ pipeline {
             steps {
                 script {
                     // Assuming the parameters file is located in the `cloudformation` directory
-                    def parametersFile = 'fargate.yaml'
+                    def parametersFile = 'cloudformation/parameters.yaml'
 
                     // Deploy or update the CloudFormation stack using the CloudFormation plugin
                     cloudFormation(
                         action: 'CreateOrUpdateStack',
                         stackName: STACK_NAME,
                         region: AWS_REGION,
-                        templateFile: 'cloudformation/fargate-template.json',
-                        parametersFile: 'cloudformation/parameters.json',
+                        templateFile: 'cloudformation/fargate.yaml',
+                        parametersFile: 'cloudformation/parameters.yaml',
                         capabilities: ['CAPABILITY_IAM', 'CAPABILITY_NAMED_IAM']
                     )
                 }
